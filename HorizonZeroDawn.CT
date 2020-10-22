@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无消耗物品时"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"HorizonZeroDawn.exe"+FE50ED)
+define(bytes,41 2B C4 89 41 58)
+
+[ENABLE]
+assert(address,bytes)
+alloc(newmem,$1000,"HorizonZeroDawn.exe"+FE50ED)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,#10
+
+code:
+  // sub eax,r12d
+  mov [rcx+58],eax
+  jmp return
+
+address:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+address:
+  db bytes
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "HorizonZeroDawn.exe"+FE50ED
+
+"HorizonZeroDawn.exe"+FE50C9: 41 5F                          -  pop r15
+"HorizonZeroDawn.exe"+FE50CB: 5D                             -  pop rbp
+"HorizonZeroDawn.exe"+FE50CC: C3                             -  ret 
+"HorizonZeroDawn.exe"+FE50CD: 8B 41 58                       -  mov eax,[rcx+58]
+"HorizonZeroDawn.exe"+FE50D0: 3B D0                          -  cmp edx,eax
+"HorizonZeroDawn.exe"+FE50D2: 48 89 9C 24 30 01 00 00        -  mov [rsp+00000130],rbx
+"HorizonZeroDawn.exe"+FE50DA: 48 8B 59 48                    -  mov rbx,[rcx+48]
+"HorizonZeroDawn.exe"+FE50DE: 4C 89 A4 24 00 01 00 00        -  mov [rsp+00000100],r12
+"HorizonZeroDawn.exe"+FE50E6: 44 8B E0                       -  mov r12d,eax
+"HorizonZeroDawn.exe"+FE50E9: 44 0F 4C E2                    -  cmovl r12d,edx
+// ---------- INJECTING HERE ----------
+"HorizonZeroDawn.exe"+FE50ED: 41 2B C4                       -  sub eax,r12d
+"HorizonZeroDawn.exe"+FE50F0: 89 41 58                       -  mov [rcx+58],eax
+// ---------- DONE INJECTING  ----------
+"HorizonZeroDawn.exe"+FE50F3: 48 8B 8B C8 01 00 00           -  mov rcx,[rbx+000001C8]
+"HorizonZeroDawn.exe"+FE50FA: 48 85 C9                       -  test rcx,rcx
+"HorizonZeroDawn.exe"+FE50FD: 0F 84 3D 02 00 00              -  je HorizonZeroDawn.exe+FE5340
+"HorizonZeroDawn.exe"+FE5103: 48 81 C1 88 02 00 00           -  add rcx,00000288
+"HorizonZeroDawn.exe"+FE510A: 4C 89 AC 24 F8 00 00 00        -  mov [rsp+000000F8],r13
+"HorizonZeroDawn.exe"+FE5112: 48 8D 15 87 7C 79 01           -  lea rdx,[HorizonZeroDawn.exe+277CDA0]
+"HorizonZeroDawn.exe"+FE5119: E8 F2 07 B7 FF                 -  call HorizonZeroDawn.exe+B55910
+"HorizonZeroDawn.exe"+FE511E: 4C 8B E8                       -  mov r13,rax
+"HorizonZeroDawn.exe"+FE5121: 48 85 C0                       -  test rax,rax
+"HorizonZeroDawn.exe"+FE5124: 0F 84 0E 02 00 00              -  je HorizonZeroDawn.exe+FE5338
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"99技能点"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"HorizonZeroDawn.exe"+12C8A86)
+define(bytes,44 8B 40 68 E8 21 5C 27 FF)
+
+[ENABLE]
+assert(address,bytes)
+alloc(newmem,$1000,"HorizonZeroDawn.exe"+12C8A86)
+
+label(code)
+label(return)
+label(pSkillPoints)
+
+newmem:
+  mov [rax+68],#99
+  mov [pSkillPoints],rax
+code:
+  mov r8d,[rax+68]
+  call HorizonZeroDawn.exe+53E6B0
+  jmp return
+
+align 10 CC
+pSkillPoints:
+  dq 0
+
+address:
+  jmp newmem
+  nop 4
+return:
+
+registerSymbol(pSkillPoints)
+
+[DISABLE]
+address:
+  db bytes
+
+unregisterSymbol(pSkillPoints)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "HorizonZeroDawn.exe"+12C8A86
+
+"HorizonZeroDawn.exe"+12C8A5B: 41 57                 -  push r15
+"HorizonZeroDawn.exe"+12C8A5D: 48 8B EC              -  mov rbp,rsp
+"HorizonZeroDawn.exe"+12C8A60: 48 83 EC 28           -  sub rsp,28
+"HorizonZeroDawn.exe"+12C8A64: 4C 8B F1              -  mov r14,rcx
+"HorizonZeroDawn.exe"+12C8A67: 48 8D 15 EA B0 B4 00  -  lea rdx,[HorizonZeroDawn.exe+1E13B58]
+"HorizonZeroDawn.exe"+12C8A6E: 48 8D 4D 48           -  lea rcx,[rbp+48]
+"HorizonZeroDawn.exe"+12C8A72: E8 99 58 E4 FE        -  call HorizonZeroDawn.exe+10E310
+"HorizonZeroDawn.exe"+12C8A77: 49 8B 86 90 00 00 00  -  mov rax,[r14+00000090]
+"HorizonZeroDawn.exe"+12C8A7E: 48 8D 55 48           -  lea rdx,[rbp+48]
+"HorizonZeroDawn.exe"+12C8A82: 49 8D 4E 30           -  lea rcx,[r14+30]
+// ---------- INJECTING HERE ----------
+"HorizonZeroDawn.exe"+12C8A86: 44 8B 40 68           -  mov r8d,[rax+68]
+"HorizonZeroDawn.exe"+12C8A8A: E8 21 5C 27 FF        -  call HorizonZeroDawn.exe+53E6B0
+// ---------- DONE INJECTING  ----------
+"HorizonZeroDawn.exe"+12C8A8F: 41 08 46 20           -  or [r14+20],al
+"HorizonZeroDawn.exe"+12C8A93: 48 8D 4D 48           -  lea rcx,[rbp+48]
+"HorizonZeroDawn.exe"+12C8A97: E8 A4 5F E4 FE        -  call HorizonZeroDawn.exe+10EA40
+"HorizonZeroDawn.exe"+12C8A9C: 49 8B 8E 90 00 00 00  -  mov rcx,[r14+00000090]
+"HorizonZeroDawn.exe"+12C8AA3: 83 79 68 00           -  cmp dword ptr [rcx+68],00
+"HorizonZeroDawn.exe"+12C8AA7: 7E 0D                 -  jle HorizonZeroDawn.exe+12C8AB6
+"HorizonZeroDawn.exe"+12C8AA9: E8 52 58 15 00        -  call HorizonZeroDawn.exe+141E300
+"HorizonZeroDawn.exe"+12C8AAE: 84 C0                 -  test al,al
+"HorizonZeroDawn.exe"+12C8AB0: 75 04                 -  jne HorizonZeroDawn.exe+12C8AB6
+"HorizonZeroDawn.exe"+12C8AB2: B3 01                 -  mov bl,01
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"Skill Points"</Description>
+          <LastState Value="99" RealAddress="26D56838F28"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>[pSkillPoints]+68</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"999材料"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"HorizonZeroDawn.exe"+FEDF55)
+define(bytes,89 30 45 84 FF)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"HorizonZeroDawn.exe"+FEDF55)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,#2000
+code:
+  mov [rax],esi
+  test r15l,r15l
+  jmp return
+
+address:
+  jmp newmem
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov [rax],esi
+  // test r15l,r15l
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "HorizonZeroDawn.exe"+FEDF55
+
+"HorizonZeroDawn.exe"+FEDF31: FF 15 09 4A A5 00           -  call qword ptr [HorizonZeroDawn.exe+1A42940]
+"HorizonZeroDawn.exe"+FEDF37: 85 F6                       -  test esi,esi
+"HorizonZeroDawn.exe"+FEDF39: 7E 58                       -  jle HorizonZeroDawn.exe+FEDF93
+"HorizonZeroDawn.exe"+FEDF3B: 85 C0                       -  test eax,eax
+"HorizonZeroDawn.exe"+FEDF3D: 75 09                       -  jne HorizonZeroDawn.exe+FEDF48
+"HorizonZeroDawn.exe"+FEDF3F: 48 8B CB                    -  mov rcx,rbx
+"HorizonZeroDawn.exe"+FEDF42: FF 15 00 4A A5 00           -  call qword ptr [HorizonZeroDawn.exe+1A42948]
+"HorizonZeroDawn.exe"+FEDF48: 48 8D 54 24 40              -  lea rdx,[rsp+40]
+"HorizonZeroDawn.exe"+FEDF4D: 48 8B CF                    -  mov rcx,rdi
+"HorizonZeroDawn.exe"+FEDF50: E8 3B 49 87 FF              -  call HorizonZeroDawn.exe+862890
+// ---------- INJECTING HERE ----------
+"HorizonZeroDawn.exe"+FEDF55: 89 30                       -  mov [rax],esi
+"HorizonZeroDawn.exe"+FEDF57: 45 84 FF                    -  test r15l,r15l
+// ---------- DONE INJECTING  ----------
+"HorizonZeroDawn.exe"+FEDF5A: 0F 84 85 00 00 00           -  je HorizonZeroDawn.exe+FEDFE5
+"HorizonZeroDawn.exe"+FEDF60: 33 C0                       -  xor eax,eax
+"HorizonZeroDawn.exe"+FEDF62: 48 C7 44 24 20 00 00 00 00  -  mov qword ptr [rsp+20],00000000
+"HorizonZeroDawn.exe"+FEDF6B: F2 48 0F 38 F1 44 24 40     -  crc32 rax,[rsp+40]
+"HorizonZeroDawn.exe"+FEDF73: 8B D0                       -  mov edx,eax
+"HorizonZeroDawn.exe"+FEDF75: 48 8D 8D 88 00 00 00        -  lea rcx,[rbp+00000088]
+"HorizonZeroDawn.exe"+FEDF7C: F2 48 0F 38 F1 54 24 48     -  crc32 rdx,[rsp+48]
+"HorizonZeroDawn.exe"+FEDF84: 45 33 C9                    -  xor r9d,r9d
+"HorizonZeroDawn.exe"+FEDF87: 4C 8D 44 24 40              -  lea r8,[rsp+40]
+"HorizonZeroDawn.exe"+FEDF8C: E8 2F 78 31 FF              -  call HorizonZeroDawn.exe+3057C0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"Q HP,一击必杀"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"HorizonZeroDawn.exe"+B9A8AC)
+define(bytes,C5 FA 10 40 64)
+
+// getAddressSafe('[[[[["HorizonZeroDawn.exe"+0711D520]+30]+28]+0]+1D0]+64')
+[ENABLE]
+assert(address,bytes)
+alloc(newmem,$1000,"HorizonZeroDawn.exe"+B9A8AC)
+
+label(code return player enemy)
+label(pHp)
+
+newmem:
+  pushfq
+  push rdx
+
+  mov rdx,[pHp]
+
+  // get player hp pointer
+  test rdx,rdx // 使用缓存，但是偶尔指针会改变，需要重启下脚本
+  jnz @f
+  mov rdx,[HorizonZeroDawn.exe+0711D520]
+  mov rdx,[rdx+30]
+  mov rdx,[rdx+28]
+  mov rdx,[rdx+0]
+  mov rdx,[rdx+1D0]
+
+@@:
+  cmp rax,rdx // check hp address
+  je player
+  jmp enemy
+
+player:
+  mov [pHp],rax
+  mov edx,[rax+68]
+  mov [rax+64],edx
+  jmp code
+
+enemy:
+  mov [rax+64],(float)30.0
+  jmp code
+
+code:
+  pop rdx
+  popfq
+  vmovss xmm0,[rax+64]
+  jmp return
+
+align 10 CC
+pHp:
+  dq 0
+
+address:
+  jmp newmem
+return:
+
+registersymbol(pHp)
+[DISABLE]
+address:
+  db bytes
+
+unregistersymbol(pHp)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "HorizonZeroDawn.exe"+B9A8AC
+
+"HorizonZeroDawn.exe"+B9A88F: CC                       -  int 3 
+"HorizonZeroDawn.exe"+B9A890: 8B 81 30 02 00 00        -  mov eax,[rcx+00000230]
+"HorizonZeroDawn.exe"+B9A896: 25 D7 FF 17 C5           -  and eax,C517FFD7
+"HorizonZeroDawn.exe"+B9A89B: 89 02                    -  mov [rdx],eax
+"HorizonZeroDawn.exe"+B9A89D: C3                       -  ret 
+"HorizonZeroDawn.exe"+B9A89E: CC                       -  int 3 
+"HorizonZeroDawn.exe"+B9A89F: CC                       -  int 3 
+"HorizonZeroDawn.exe"+B9A8A0: 48 8B 81 F0 01 00 00     -  mov rax,[rcx+000001F0]
+"HorizonZeroDawn.exe"+B9A8A7: 48 85 C0                 -  test rax,rax
+"HorizonZeroDawn.exe"+B9A8AA: 74 06                    -  je HorizonZeroDawn.exe+B9A8B2
+// ---------- INJECTING HERE ----------
+"HorizonZeroDawn.exe"+B9A8AC: C5 FA 10 40 64           -  vmovss xmm0,[rax+64]
+// ---------- DONE INJECTING  ----------
+"HorizonZeroDawn.exe"+B9A8B1: C3                       -  ret 
+"HorizonZeroDawn.exe"+B9A8B2: C5 FA 10 05 26 53 EF 00  -  vmovss xmm0,[HorizonZeroDawn.exe+1A8FBE0]
+"HorizonZeroDawn.exe"+B9A8BA: C3                       -  ret 
+"HorizonZeroDawn.exe"+B9A8BB: CC                       -  int 3 
+"HorizonZeroDawn.exe"+B9A8BC: CC                       -  int 3 
+"HorizonZeroDawn.exe"+B9A8BD: CC                       -  int 3 
+"HorizonZeroDawn.exe"+B9A8BE: CC                       -  int 3 
+"HorizonZeroDawn.exe"+B9A8BF: CC                       -  int 3 
+"HorizonZeroDawn.exe"+B9A8C0: C4 C1 7C 10 00           -  vmovups ymm0,[r8]
+"HorizonZeroDawn.exe"+B9A8C5: C5 FC 11 02              -  vmovups [rdx],ymm0
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>19</ID>
+          <Description>"cur hp"</Description>
+          <LastState Value="4.590513639E-41" RealAddress="26E00F5E9F4"/>
+          <VariableType>Float</VariableType>
+          <Address>[pHp]+64</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>20</ID>
+          <Description>"max hp"</Description>
+          <LastState Value="0" RealAddress="26E00F5E9F8"/>
+          <VariableType>Float</VariableType>
+          <Address>[pHp]+68</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"Q 2000药草"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"HorizonZeroDawn.exe"+FF97C6)
+define(bytes,E8 D5 10 BA FF)
+
+[ENABLE]
+assert(address,bytes)
+alloc(newmem,$1000,"HorizonZeroDawn.exe"+FF97C6)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  call HorizonZeroDawn.exe+B9A8A0
+  mov [rbx+58],(float)2000.0
+  jmp return
+
+address:
+  jmp newmem
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "HorizonZeroDawn.exe"+FF97C6
+
+"HorizonZeroDawn.exe"+FF979A: 57                          -  push rdi
+"HorizonZeroDawn.exe"+FF979B: 48 81 EC A0 00 00 00        -  sub rsp,000000A0
+"HorizonZeroDawn.exe"+FF97A2: 48 8B 71 30                 -  mov rsi,[rcx+30]
+"HorizonZeroDawn.exe"+FF97A6: 48 8B D9                    -  mov rbx,rcx
+"HorizonZeroDawn.exe"+FF97A9: 48 8B 49 48                 -  mov rcx,[rcx+48]
+"HorizonZeroDawn.exe"+FF97AD: 48 8B FA                    -  mov rdi,rdx
+"HorizonZeroDawn.exe"+FF97B0: C5 F8 29 B4 24 90 00 00 00  -  vmovaps [rsp+00000090],xmm6
+"HorizonZeroDawn.exe"+FF97B9: E8 22 15 BA FF              -  call HorizonZeroDawn.exe+B9ACE0
+"HorizonZeroDawn.exe"+FF97BE: 48 8B 4B 48                 -  mov rcx,[rbx+48]
+"HorizonZeroDawn.exe"+FF97C2: C5 F8 28 F0                 -  vmovaps xmm6,xmm0
+// ---------- INJECTING HERE ----------
+"HorizonZeroDawn.exe"+FF97C6: E8 D5 10 BA FF              -  call HorizonZeroDawn.exe+B9A8A0
+// ---------- DONE INJECTING  ----------
+"HorizonZeroDawn.exe"+FF97CB: C5 CA 5C C8                 -  vsubss xmm1,xmm6,xmm0
+"HorizonZeroDawn.exe"+FF97CF: C5 F2 5D 53 58              -  vminss xmm2,xmm1,[rbx+58]
+"HorizonZeroDawn.exe"+FF97D4: C5 F8 57 C0                 -  vxorps xmm0,xmm0,xmm0
+"HorizonZeroDawn.exe"+FF97D8: C5 F8 2F 43 64              -  vcomiss xmm0,xmm0,[rbx+64]
+"HorizonZeroDawn.exe"+FF97DD: 0F 82 E8 00 00 00           -  jb HorizonZeroDawn.exe+FF98CB
+"HorizonZeroDawn.exe"+FF97E3: C5 F8 2F D0                 -  vcomiss xmm2,xmm0,xmm0
+"HorizonZeroDawn.exe"+FF97E7: 0F 86 DE 00 00 00           -  jbe HorizonZeroDawn.exe+FF98CB
+"HorizonZeroDawn.exe"+FF97ED: 48 8B 4B 48                 -  mov rcx,[rbx+48]
+"HorizonZeroDawn.exe"+FF97F1: 48 8D 05 00 80 DB 00        -  lea rax,[HorizonZeroDawn.exe+1DB17F8]
+"HorizonZeroDawn.exe"+FF97F8: 45 33 C0                    -  xor r8d,r8d
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"武器/衣服容量"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"HorizonZeroDawn.exe"+15339D1)
+define(bytes,41 8B 46 58 89 44 24 28)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"HorizonZeroDawn.exe"+15339D1)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r14+58],0 // 武器容量
+  mov [r14+68],0 // 衣服容量
+code:
+  mov eax,[r14+58]
+  mov [rsp+28],eax
+  jmp return
+
+address:
+  jmp newmem
+  nop 3
+return:
+
+[DISABLE]
+address:
+  db bytes
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "HorizonZeroDawn.exe"+15339D1
+
+"HorizonZeroDawn.exe"+15339A5: E9 E9 00 00 00        -  jmp HorizonZeroDawn.exe+1533A93
+"HorizonZeroDawn.exe"+15339AA: 48 8D 4C 24 28        -  lea rcx,[rsp+28]
+"HorizonZeroDawn.exe"+15339AF: 41 B8 08 00 00 00     -  mov r8d,00000008
+"HorizonZeroDawn.exe"+15339B5: 48 8D 44 24 48        -  lea rax,[rsp+48]
+"HorizonZeroDawn.exe"+15339BA: 48 3B C8              -  cmp rcx,rax
+"HorizonZeroDawn.exe"+15339BD: 48 8D 4C 24 28        -  lea rcx,[rsp+28]
+"HorizonZeroDawn.exe"+15339C2: 4D 0F 47 C7           -  cmova r8,r15
+"HorizonZeroDawn.exe"+15339C6: 33 D2                 -  xor edx,edx
+"HorizonZeroDawn.exe"+15339C8: 49 C1 E0 02           -  shl r8,02
+"HorizonZeroDawn.exe"+15339CC: E8 61 27 46 00        -  call HorizonZeroDawn.exe+1996132
+// ---------- INJECTING HERE ----------
+"HorizonZeroDawn.exe"+15339D1: 41 8B 46 58           -  mov eax,[r14+58]
+"HorizonZeroDawn.exe"+15339D5: 89 44 24 28           -  mov [rsp+28],eax
+// ---------- DONE INJECTING  ----------
+"HorizonZeroDawn.exe"+15339D9: 41 8B 46 5C           -  mov eax,[r14+5C]
+"HorizonZeroDawn.exe"+15339DD: 89 44 24 2C           -  mov [rsp+2C],eax
+"HorizonZeroDawn.exe"+15339E1: 41 8B 46 60           -  mov eax,[r14+60]
+"HorizonZeroDawn.exe"+15339E5: 89 44 24 30           -  mov [rsp+30],eax
+"HorizonZeroDawn.exe"+15339E9: 41 8B 46 64           -  mov eax,[r14+64]
+"HorizonZeroDawn.exe"+15339ED: 89 44 24 34           -  mov [rsp+34],eax
+"HorizonZeroDawn.exe"+15339F1: 41 8B 46 68           -  mov eax,[r14+68]
+"HorizonZeroDawn.exe"+15339F5: 89 44 24 38           -  mov [rsp+38],eax
+"HorizonZeroDawn.exe"+15339F9: 41 8B 46 6C           -  mov eax,[r14+6C]
+"HorizonZeroDawn.exe"+15339FD: 89 44 24 3C           -  mov [rsp+3C],eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"hp pointer"</Description>
+      <VariableType>Float</VariableType>
+      <Address>"HorizonZeroDawn.exe"+0711D520</Address>
+      <Offsets>
+        <Offset>64</Offset>
+        <Offset>1D0</Offset>
+        <Offset>0</Offset>
+        <Offset>28</Offset>
+        <Offset>30</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>33</ID>
+      <Description>"hp pointer"</Description>
+      <VariableType>Float</VariableType>
+      <Address>"HorizonZeroDawn.exe"+0711D080</Address>
+      <Offsets>
+        <Offset>64</Offset>
+        <Offset>1D0</Offset>
+        <Offset>18</Offset>
+        <Offset>48</Offset>
+        <Offset>60</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>34</ID>
+      <Description>"hp pointer"</Description>
+      <VariableType>Float</VariableType>
+      <Address>"HorizonZeroDawn.exe"+0711D080</Address>
+      <Offsets>
+        <Offset>64</Offset>
+        <Offset>1D0</Offset>
+        <Offset>18</Offset>
+        <Offset>48</Offset>
+        <Offset>48</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"hp pointer"</Description>
+      <VariableType>Float</VariableType>
+      <Address>"HorizonZeroDawn.exe"+0711D530</Address>
+      <Offsets>
+        <Offset>64</Offset>
+        <Offset>1D0</Offset>
+        <Offset>8</Offset>
+        <Offset>0</Offset>
+        <Offset>70</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>消耗弓箭</Description>
+      <AddressString>HorizonZeroDawn.exe+FE50F0</AddressString>
+      <Before>
+        <Byte>4C</Byte>
+        <Byte>E2</Byte>
+        <Byte>41</Byte>
+        <Byte>2B</Byte>
+        <Byte>C4</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>41</Byte>
+        <Byte>58</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>8B</Byte>
+        <Byte>C8</Byte>
+        <Byte>01</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>R: 技能点</Description>
+      <AddressString>HorizonZeroDawn.exe+12C8A86</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>49</Byte>
+        <Byte>8D</Byte>
+        <Byte>4E</Byte>
+        <Byte>30</Byte>
+      </Before>
+      <Actual>
+        <Byte>44</Byte>
+        <Byte>8B</Byte>
+        <Byte>40</Byte>
+        <Byte>68</Byte>
+      </Actual>
+      <After>
+        <Byte>E8</Byte>
+        <Byte>21</Byte>
+        <Byte>5C</Byte>
+        <Byte>27</Byte>
+        <Byte>FF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>mp</Description>
+      <AddressString>HorizonZeroDawn.exe+FF97CF</AddressString>
+      <Before>
+        <Byte>FF</Byte>
+        <Byte>C5</Byte>
+        <Byte>CA</Byte>
+        <Byte>5C</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>F2</Byte>
+        <Byte>5D</Byte>
+        <Byte>53</Byte>
+        <Byte>58</Byte>
+      </Actual>
+      <After>
+        <Byte>C5</Byte>
+        <Byte>F8</Byte>
+        <Byte>57</Byte>
+        <Byte>C0</Byte>
+        <Byte>C5</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>访问了CurHp</Description>
+      <AddressString>HorizonZeroDawn.exe+B9A8AC</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>74</Byte>
+        <Byte>06</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FA</Byte>
+        <Byte>10</Byte>
+        <Byte>40</Byte>
+        <Byte>64</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>C5</Byte>
+        <Byte>FA</Byte>
+        <Byte>10</Byte>
+        <Byte>05</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>
+</Comments>
+</CheatTable>
